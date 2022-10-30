@@ -7,11 +7,22 @@ from io import BytesIO
 import tensorflow as tf
 import tensorflow_hub as hub
 
+from fastapi.middleware.cors import CORSMiddleware
+
 from PIL import Image
 import numpy as np
 import pandas as pd
 
 app = FastAPI()
+
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"])
 
 model = None
 
